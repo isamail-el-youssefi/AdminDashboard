@@ -1,0 +1,137 @@
+@import "../../styles/responsive.scss";
+
+.single {
+  .info {
+    .topInfo {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 50px;
+
+      @include md {
+        padding: 15px;
+      }
+
+      
+
+      img {
+        width: 250px;
+        height: 250px;
+        //border-radius: 0%;
+        object-fit: cover;
+
+        @include md {
+          width: 100px;
+          height: 100px;
+        }
+        @include sm {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      h1 {
+        font-weight: 800;
+        padding: 50px;
+
+        @include md {
+          padding: 15px;
+          font-weight: 400;
+
+        }
+
+      }
+    }
+
+    .details {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0px 0px 0px 50px;
+
+      @include md {
+        padding: 0px 0px 0px 15px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+
+        button {
+          background-color: white;
+          width: 250px;
+          margin-bottom: 10px;
+          color: #2a3447;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+          transition: background-color 0.3s, border-radius 0.3s;
+
+          @include md {
+            width: 100px;
+            height: 40px;
+          }
+          @include sm {
+            width: 70px;
+            height: 30px;
+            font-size: 13px;
+            padding: 0;
+          }
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.938);
+          }
+        }
+      }
+
+      .items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 70px;
+
+        @include md {
+          padding-left: 25px;
+          margin-top: 10px;
+
+        }
+
+        hr {
+          width: 250px;
+
+          @include md {
+            display: none;
+          }
+        }
+        .item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+          margin: 25px 0px;
+
+          @include md {
+            font-size: 17px;
+            margin: 18px 0px;
+          }
+          @include sm {
+            font-size: 15px;
+            margin: 18px 0px;
+          }
+
+          .itemTitle {
+            font-weight: 600;
+            text-transform: capitalize;
+          }
+
+          .itemValue {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
