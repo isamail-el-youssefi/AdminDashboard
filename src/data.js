@@ -140,7 +140,7 @@ export const barChartBoxVisit = {
   ],
 };
 
-export const userRows = [
+export let userRows = [
   {
     id: 1,
     img: "https://images.pexels.com/photos/8405873/pexels-photo-8405873.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
@@ -209,7 +209,7 @@ export const userRows = [
     phone: "123 456 789",
     createdAt: "01.02.2023",
   },
-  {
+  /*   {
     id: 8,
     img: "https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1600",
     lastName: "Dean",
@@ -283,7 +283,7 @@ export const userRows = [
     email: "ubi@gmail.com",
     phone: "123 456 789",
     createdAt: "01.02.2023",
-  },
+  }, */
 ];
 
 export const products = [
@@ -385,7 +385,6 @@ export const products = [
     inStock: true,
   },
 ];
-
 
 export const singleUser = {
   id: 1,

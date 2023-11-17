@@ -23,19 +23,19 @@ a {
   display: flex;
 
   @include xxl {
-    background-color: rgba(255, 0, 0, 0.089);
+    //background-color: rgba(255, 0, 0, 0.089);
   }
   @include xl {
-    background-color: rgba(217, 255, 0, 0.089);
+    // background-color: rgba(217, 255, 0, 0.089);
   }
   @include lg {
-    background-color: rgba(0, 255, 42, 0.089);
+    // background-color: rgba(0, 255, 42, 0.089);
   }
   @include md {
-    background-color: rgba(0, 102, 255, 0.089);
+    // background-color: rgba(0, 102, 255, 0.089);
   }
   @include sm {
-    background-color: rgba(195, 0, 255, 0.089);
+    // background-color: rgba(195, 0, 255, 0.089);
   }
 }
 
@@ -44,13 +44,12 @@ a {
   padding: 5px 20px;
   border-right: 2px solid $soft-bg;
 
-  @include lg{
+  @include lg {
     width: max-content;
   }
 }
 
 .contentContainer {
-  
   padding: 5px 20px;
   width: 100%;
 }

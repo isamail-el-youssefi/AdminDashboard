@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="box box1">
-      <ChartBox {...chartBoxProduct} />
+      <ChartBox  />
 
       </div>
       <div className="box box2">
@@ -27,9 +27,9 @@ export default function Home() {
       <div className="box box4">
         <PieChartBox/>
         </div>
-      <div className="box box5">
+      {/* <div className="box box5">
       <ChartBox {...chartBoxProduct} />
-      </div>
+      </div> */}
       <div className="box box6">
         <ChartBox {...chartBoxRevenue} />
       </div>

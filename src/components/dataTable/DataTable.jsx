@@ -3,7 +3,6 @@ import "./dataTable.scss";
 import { Link } from "react-router-dom";
 
 export default function DataTable(props) {
-  
   const handleDelete = (id) => {
     //delete the item
     //axios.delete(`/v1/${slug}/id`)
@@ -37,7 +36,7 @@ export default function DataTable(props) {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 10,
+              pageSize: 5,
             },
           },
         }}
@@ -54,6 +53,7 @@ export default function DataTable(props) {
         disableRowSelectionOnClick
         disableColumnFilter
         disableColumnSelector
+        
       />
     </div>
   );
