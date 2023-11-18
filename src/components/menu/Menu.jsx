@@ -22,7 +22,7 @@ export default function Menu() {
           <img src="/user.svg" alt="" />
           <span className="listItemTitle">Users</span>
         </Link>
-        <Link to="/" className="listItem">
+        <Link to="/customers" className="listItem">
           <img src="/profile.svg" alt="" />
           <span className="listItemTitle">Customers</span>
         </Link>

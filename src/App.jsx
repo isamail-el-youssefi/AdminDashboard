@@ -9,6 +9,7 @@ import Login from "./pages/login/login";
 import "./styles/global.scss";
 import User from "./pages/user/User";
 import Product from "./pages/product/Product";
+import Customers from "./pages/customers/Customers";
 //import User from "./pages/user/User";
 //import Product from "./pages/product/Product";
 /*  import {
@@ -49,15 +50,20 @@ function App() {
         {
           path: "/users",
           element: <Users />,
-        },
+        },  
         {
           path: "/products",
           element: <Products />,
         },
         {
-          path: "/users/:id",
-          element: <User />,
+          path: "/customers",
+          element: <Customers />,
         },
+        {
+          path: "/customers/:id",
+          element: <Customers />,
+        },
+
         {
           path: "/products/:id",
           element: <Product />,
