@@ -14,7 +14,7 @@ const columns = [
   },
   {
     field: "first_name",
-    type: "password",
+    type: "string",
     headerName: "First name",
     width: 150,
   },
@@ -35,6 +35,12 @@ const columns = [
     headerName: "Created at",
     width: 160,
     type: "string",
+  },
+  {
+    field: "active",
+    headerName: "Active",
+    width: 150,
+    type: "boolean",
   },
 ];
 
@@ -76,10 +82,10 @@ export default function Customers() {
       );
 
       if (response.status === 200) {
-        const updatedCustomers = customers.filter(
+        const deleteCustomer = customers.filter(
           (customer) => customer.id !== id
         );
-        setCustomers(updatedCustomers);
+        setCustomers(deleteCustomer);
         console.log(`Customer with ID ${id} has been deleted successfully!`);
       } else {
         console.error(`Failed to delete customer with ID ${id}`);

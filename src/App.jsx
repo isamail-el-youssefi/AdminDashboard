@@ -7,9 +7,10 @@ import Footer from "./components/footer/Footer";
 import Menu from "./components/menu/Menu";
 import Login from "./pages/login/login";
 import "./styles/global.scss";
-import User from "./pages/user/User";
 import Product from "./pages/product/Product";
 import Customers from "./pages/customers/Customers";
+import Categories from "./pages/categories/Categories";
+import Subcategories from "./pages/subcategories/SubCategories";
 //import User from "./pages/user/User";
 //import Product from "./pages/product/Product";
 /*  import {
@@ -57,6 +58,18 @@ function App() {
         },
         {
           path: "/customers",
+          element: <Customers />,
+        },
+        {
+          path: "/categories",
+          element: <Categories />,
+        },
+        {
+          path: "/subcategories",
+          element: <Subcategories />,
+        },
+        {
+          path: "/orders",
           element: <Customers />,
         },
         {

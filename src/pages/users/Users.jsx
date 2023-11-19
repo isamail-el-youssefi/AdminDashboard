@@ -52,7 +52,7 @@ const columns = [
   },
 ];
 
-const modalColumn = [
+const usersModal = [
   {
     field: "password",
     headerName: "Password",
@@ -160,7 +160,7 @@ export default function Users() {
         getRowId={(row) => row.id}
         onDelete={handleDelete} // Pass the delete callback function
       />
-      {open && <Add slug="user" modalColumn={modalColumn} setOpen={setOpen} />}
+      {open && <Add slug="user" modalConfig={usersModal} setOpen={setOpen} />}
     </div>
   );
 }

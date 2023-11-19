@@ -30,7 +30,15 @@ export default function Menu() {
           <img src="/product.svg" alt="" />
           <span className="listItemTitle">Products</span>
         </Link>
-        <Link to="/" className="listItem">
+        <Link to="/categories" className="listItem">
+          <img src="/order.svg" alt="" />
+          <span className="listItemTitle">Categories</span>
+        </Link>
+        <Link to="/subcategories" className="listItem">
+          <img src="/order.svg" alt="" />
+          <span className="listItemTitle">SubCategories</span>
+        </Link>
+        <Link to="/orders" className="listItem">
           <img src="/order.svg" alt="" />
           <span className="listItemTitle">Orders</span>
         </Link>

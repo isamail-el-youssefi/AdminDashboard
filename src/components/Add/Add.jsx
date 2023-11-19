@@ -12,16 +12,16 @@ export default function Add(props) {
     });
   };
 
-  const addNewUser = async (e) => {
+  const addNewEntity = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4000/v1/users", formData);
-      console.log("Added new user:", response.data);
+      const response = await axios.post(`http://localhost:4000/v1/${props.slug}s`, formData);
+      console.log(`Added new ${props.slug}:`, response.data);
       // Close the modal or perform any other necessary actions
       props.setOpen(false);
     } catch (error) {
-      console.error("Error adding new user:", error.message);
+      console.error(`Error adding new ${props.slug}:`, error.message);
       // Handle the error or display a message to the user
     }
   };
@@ -33,8 +33,8 @@ export default function Add(props) {
           <h4>X</h4>
         </span>
         <h1>Add new {props.slug}</h1>
-        <form onSubmit={addNewUser}>
-          {props.modalColumn
+        <form onSubmit={addNewEntity}>
+          {props.modalConfig
             .filter((item) => item.field !== "id" && item.field !== "img")
             .map((column) => (
               <div className="item" key={column.field}>
@@ -66,5 +66,3 @@ export default function Add(props) {
     </div>
   );
 }
-
-
