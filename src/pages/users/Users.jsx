@@ -3,6 +3,7 @@ import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/Add/Add";
 import { useEffect } from "react";
 import axios from "axios";
+import Update from "../../components/update/Update";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 260 },
@@ -90,10 +91,44 @@ const usersModal = [
     type: "boolean",
   },
 ];
+const updateUsersModal = [
+  {
+    field: "first_name",
+    type: "string",
+    headerName: "First name",
+    width: 150,
+  },
+  {
+    field: "last_name",
+    type: "string",
+    headerName: "Last name",
+    width: 150,
+  },
+  {
+    field: "email",
+    type: "string",
+    headerName: "Email",
+    width: 200,
+  },
+  {
+    field: "user_name",
+    headerName: "User name",
+    width: 150,
+    type: "string",
+  },
+  {
+    field: "role",
+    headerName: "Role",
+    width: 150,
+    type: "boolean",
+  },
+];
 
 export default function Users() {
-  const [open, setOpen] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false); // State for Add modal
+  const [openUpdate, setOpenUpdate] = useState(false); // State for Update modal
   const [users, setUsers] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -103,7 +138,6 @@ export default function Users() {
         const response = await axios.get("http://localhost:4000/v1/users");
         console.log(response.data);
         if (response.data) {
-          // Set the id property using _id from MongoDB
           const usersWithId = response.data.Users.map((user) => ({
             ...user,
             id: user._id,
@@ -122,8 +156,7 @@ export default function Users() {
     };
 
     fetchData();
-  }, [open]);
-  
+  }, [openAdd, openUpdate]); // Include openAdd and openUpdate in the dependency array
 
   const handleDelete = async (id) => {
     try {
@@ -132,7 +165,6 @@ export default function Users() {
       );
 
       if (response.status === 200) {
-        // Filter out the deleted user from the current state
         const updatedUsers = users.filter((user) => user.id !== id);
         setUsers(updatedUsers);
         console.log(`User with ID ${id} has been deleted successfully!`);
@@ -143,13 +175,17 @@ export default function Users() {
       console.error(`Error deleting user with ID ${id}: ${error.message}`);
     }
   };
-  
+
+  const handleUpdate = (id) => {
+    setSelectedUserId(id);
+    setOpenUpdate(true);
+  };
 
   return (
     <div className="users">
       <div className="info">
         <h1>Users</h1>
-        <button className="addButton" onClick={() => setOpen(true)}>
+        <button className="addButton" onClick={() => setOpenAdd(true)}>
           Add New User
         </button>
       </div>
@@ -158,13 +194,23 @@ export default function Users() {
         columns={columns}
         rows={users}
         getRowId={(row) => row.id}
-        onDelete={handleDelete} // Pass the delete callback function
+        onDelete={handleDelete}
+        onUpdate={handleUpdate}
       />
-      {open && <Add slug="user" modalConfig={usersModal} setOpen={setOpen} />}
+      {openAdd && (
+        <Add slug="user" modalConfig={usersModal} setOpen={setOpenAdd} />
+      )}
+      {openUpdate && (
+        <Update
+          slug="user"
+          id={selectedUserId}
+          modalConfig={updateUsersModal}
+          setOpen={setOpenUpdate}
+        />
+      )}
     </div>
   );
 }
-
 // import { useState } from "react";
 // import DataTable from "../../components/dataTable/DataTable";
 // import { userRows } from "../../data";

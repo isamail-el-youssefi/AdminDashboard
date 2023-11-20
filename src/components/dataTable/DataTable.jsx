@@ -1,6 +1,6 @@
+
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "./dataTable.scss";
-import { Link } from "react-router-dom";
 
 export default function DataTable(props) {
   const actionColumn = {
@@ -10,9 +10,8 @@ export default function DataTable(props) {
     renderCell: (params) => {
       return (
         <div className="action">
-
-          <div className="update" >
-            <img src="/update.svg" alt="" />
+          <div className="update" onClick={() => props.onUpdate(params.row.id)}>
+            <img src="/view.svg" alt="" />
           </div>
           <div className="delete" onClick={() => props.onDelete(params.row.id)}>
             <img src="/delete.svg" alt="" />
@@ -51,6 +50,7 @@ export default function DataTable(props) {
     </div>
   );
 }
+
 
 // import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 // import "./dataTable.scss";

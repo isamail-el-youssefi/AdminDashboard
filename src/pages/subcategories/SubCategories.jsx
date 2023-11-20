@@ -1,7 +1,10 @@
+// Subcategories.jsx
+
 import { useState, useEffect } from "react";
 import DataTable from "../../components/dataTable/DataTable";
-import axios from "axios";
 import Add from "../../components/Add/Add";
+import Update from "../../components/update/Update"; // Import the Update component
+import axios from "axios";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 260 },
@@ -24,10 +27,9 @@ const columns = [
     type: "string",
   },
   {
-    field: "category_id",
+    field: "category_name",
     headerName: "Category Boss",
     width: 150,
-    type: "string",
   },
 ];
 
@@ -47,8 +49,10 @@ const subCategoriesModal = [
 ];
 
 export default function Subcategories() {
-  const [open, setOpen] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
+  const [selectedSubcategoryId, setSelectedSubcategoryId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -60,7 +64,6 @@ export default function Subcategories() {
         );
         console.log(response.data);
         if (response.data) {
-          // Update the property access to match the server response
           const subcategoriesWithId = response.data.subCategories.map(
             (subCategories) => ({
               ...subCategories,
@@ -81,7 +84,7 @@ export default function Subcategories() {
     };
 
     fetchData();
-  }, [open]);
+  }, [openAdd, openUpdate]);
 
   const handleDelete = async (id) => {
     try {
@@ -90,10 +93,10 @@ export default function Subcategories() {
       );
 
       if (response.status === 200) {
-        const deleteSubcategory = subcategories.filter(
+        const updatedSubcategories = subcategories.filter(
           (subcategory) => subcategory.id !== id
         );
-        setSubcategories(deleteSubcategory);
+        setSubcategories(updatedSubcategories);
         console.log(`Subcategory with ID ${id} has been deleted successfully!`);
       } else {
         console.error(`Failed to delete subcategory with ID ${id}`);
@@ -105,11 +108,16 @@ export default function Subcategories() {
     }
   };
 
+  const handleUpdate = (id) => {
+    setSelectedSubcategoryId(id);
+    setOpenUpdate(true);
+  };
+
   return (
     <div className="subcategories">
       <div className="info">
         <h1>SubCategories</h1>
-        <button className="addButton" onClick={() => setOpen(true)}>
+        <button className="addButton" onClick={() => setOpenAdd(true)}>
           Add New SubCategory
         </button>
       </div>
@@ -119,9 +127,19 @@ export default function Subcategories() {
         rows={subcategories}
         getRowId={(row) => row.id}
         onDelete={handleDelete}
+        onUpdate={handleUpdate} /* Pass the handleUpdate function as onUpdate prop */
       />
-      {open && <Add slug="subcategorie" modalConfig={subCategoriesModal} setOpen={setOpen} />
-      }
+      {openAdd && (
+        <Add slug="subcategorie" modalConfig={subCategoriesModal} setOpen={setOpenAdd} />
+      )}
+      {openUpdate && (
+        <Update
+          slug="subcategorie"
+          id={selectedSubcategoryId}
+          modalConfig={subCategoriesModal}
+          setOpen={setOpenUpdate}
+        />
+      )}
     </div>
   );
 }

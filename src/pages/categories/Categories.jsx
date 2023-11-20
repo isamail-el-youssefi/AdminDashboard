@@ -1,7 +1,10 @@
+// Categories.jsx
+
 import { useState, useEffect } from "react";
 import DataTable from "../../components/dataTable/DataTable";
-import axios from "axios";
 import Add from "../../components/Add/Add";
+import Update from "../../components/update/Update"; // Import the Update component
+import axios from "axios";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 260 },
@@ -30,6 +33,7 @@ const columns = [
     type: "boolean",
   },
 ];
+
 const categoriesModal = [
   {
     field: "category_name",
@@ -37,17 +41,13 @@ const categoriesModal = [
     headerName: "Category name",
     width: 150,
   },
-//   {
-//     field: "active",
-//     headerName: "Active",
-//     width: 150,
-//     type: "boolean",
-//   },
 ];
 
 export default function Categories() {
-  const [open, setOpen] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -57,7 +57,6 @@ export default function Categories() {
         const response = await axios.get("http://localhost:4000/v1/categories");
         console.log(response.data);
         if (response.data) {
-          // Update the property access to match the server response
           const categoriesWithId = response.data.categories.map((category) => ({
             ...category,
             id: category._id,
@@ -76,7 +75,7 @@ export default function Categories() {
     };
 
     fetchData();
-  }, [open]);
+  }, [openAdd, openUpdate]);
 
   const handleDelete = async (id) => {
     try {
@@ -85,10 +84,10 @@ export default function Categories() {
       );
 
       if (response.status === 200) {
-        const deleteCategory = categories.filter(
+        const updatedCategories = categories.filter(
           (category) => category.id !== id
         );
-        setCategories(deleteCategory);
+        setCategories(updatedCategories);
         console.log(`Category with ID ${id} has been deleted successfully!`);
       } else {
         console.error(`Failed to delete category with ID ${id}`);
@@ -98,11 +97,16 @@ export default function Categories() {
     }
   };
 
+  const handleUpdate = (id) => {
+    setSelectedCategoryId(id);
+    setOpenUpdate(true);
+  };
+
   return (
     <div className="categories">
       <div className="info">
         <h1>Categories</h1>
-        <button className="addButton" onClick={() => setOpen(true)}>
+        <button className="addButton" onClick={() => setOpenAdd(true)}>
           Add New Category
         </button>
       </div>
@@ -112,8 +116,17 @@ export default function Categories() {
         rows={categories}
         getRowId={(row) => row.id}
         onDelete={handleDelete}
+        onUpdate={handleUpdate} 
       />
-      {open && <Add slug="categorie" modalConfig={categoriesModal} setOpen={setOpen} />}
+      {openAdd && <Add slug="categorie" modalConfig={categoriesModal} setOpen={setOpenAdd} />}
+      {openUpdate && (
+        <Update
+          slug="categorie"
+          id={selectedCategoryId}
+          modalConfig={categoriesModal}
+          setOpen={setOpenUpdate}
+        />
+      )}
     </div>
   );
 }
