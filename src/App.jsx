@@ -11,15 +11,8 @@ import Product from "./pages/product/Product";
 import Customers from "./pages/customers/Customers";
 import Categories from "./pages/categories/Categories";
 import Subcategories from "./pages/subcategories/SubCategories";
-//import User from "./pages/user/User";
-//import Product from "./pages/product/Product";
-/*  import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query"; 
+import Orders from "./pages/orders/Orders";
 
-
-const queryClient = new QueryClient(); */
 
 function App() {
   const Layout = () => {
@@ -70,7 +63,7 @@ function App() {
         },
         {
           path: "/orders",
-          element: <Customers />,
+          element: <Orders />,
         },
         {
           path: "/customers/:id",

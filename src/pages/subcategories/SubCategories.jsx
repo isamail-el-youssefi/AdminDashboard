@@ -5,6 +5,8 @@ import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/Add/Add";
 import Update from "../../components/update/Update"; // Import the Update component
 import axios from "axios";
+import './subCategories.scss'
+
 
 const columns = [
   { field: "_id", headerName: "ID", width: 260 },
@@ -134,7 +136,8 @@ export default function Subcategories() {
       )}
       {openUpdate && (
         <Update
-          slug="subcategorie"
+          slugname="subcategory"
+          sluglink="subcategories"
           id={selectedSubcategoryId}
           modalConfig={subCategoriesModal}
           setOpen={setOpenUpdate}

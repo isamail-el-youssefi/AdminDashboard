@@ -10,10 +10,10 @@ export default function DataTable(props) {
     renderCell: (params) => {
       return (
         <div className="action">
-          <div className="update" onClick={() => props.onUpdate(params.row.id)}>
+          <div onClick={() => props.onUpdate(params.row.id)}>
             <img src="/view.svg" alt="" />
           </div>
-          <div className="delete" onClick={() => props.onDelete(params.row.id)}>
+          <div onClick={() => props.onDelete(params.row.id)}>
             <img src="/delete.svg" alt="" />
           </div>
         </div>
@@ -30,7 +30,7 @@ export default function DataTable(props) {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 10,
             },
           },
         }}

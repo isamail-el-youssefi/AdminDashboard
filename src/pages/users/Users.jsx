@@ -4,6 +4,8 @@ import Add from "../../components/Add/Add";
 import { useEffect } from "react";
 import axios from "axios";
 import Update from "../../components/update/Update";
+import './Users.scss';
+
 
 const columns = [
   { field: "_id", headerName: "ID", width: 260 },
@@ -190,7 +192,7 @@ export default function Users() {
         </button>
       </div>
       <DataTable
-        slug="users"
+        slug="Users"
         columns={columns}
         rows={users}
         getRowId={(row) => row.id}
@@ -202,7 +204,8 @@ export default function Users() {
       )}
       {openUpdate && (
         <Update
-          slug="user"
+          slugname="user"
+          sluglink="users"
           id={selectedUserId}
           modalConfig={updateUsersModal}
           setOpen={setOpenUpdate}
