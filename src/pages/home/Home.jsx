@@ -8,6 +8,7 @@ import {
   chartBoxConversion,
   barChartBoxRevenue,
   barChartBoxVisit,
+  chartBoxCustomers,
 } from "../../data";
 import "./Home.scss";
 
@@ -19,10 +20,10 @@ export default function Home() {
 
       </div>
       <div className="box box2">
-        <ChartBox {...chartBoxUser} />
+        <ChartBox {...chartBoxCustomers} viewAllLink="/customers"/>
       </div>
       <div className="box box3">
-        <ChartBox {...chartBoxProduct} />
+        <ChartBox {...chartBoxProduct} viewAllLink="/products"/>
       </div>
       <div className="box box4">
         <PieChartBox/>
@@ -34,7 +35,7 @@ export default function Home() {
         <ChartBox {...chartBoxRevenue} />
       </div>
       <div className="box box7">
-        <ChartBox {...chartBoxConversion} />
+        <ChartBox {...chartBoxConversion} viewAllLink="/orders" />
       </div>
       <div className="box box8">
         <BarChartBox {...barChartBoxRevenue} />

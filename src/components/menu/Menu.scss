@@ -14,10 +14,20 @@
       font-style: 12px;
       font-weight: 200;
       color: $soft-color;
+      padding-left: 13px;
+      padding-top: 13px;
 
       @include lg {
         display: none;
       }
+    }
+
+    img {
+      filter: invert(1);
+    }
+
+    .listItemTitle{
+      font-weight: 350;
     }
 
     .listItem {

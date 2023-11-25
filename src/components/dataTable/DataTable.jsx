@@ -30,7 +30,7 @@ export default function DataTable(props) {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 10,
+              pageSize: 9,
             },
           },
         }}
@@ -41,7 +41,7 @@ export default function DataTable(props) {
             quickFilterProps: { debounceMs: 500 },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[9]}
         checkboxSelection
         disableRowSelectionOnClick
         disableColumnFilter

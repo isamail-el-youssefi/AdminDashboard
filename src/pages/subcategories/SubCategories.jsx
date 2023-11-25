@@ -6,6 +6,7 @@ import Add from "../../components/Add/Add";
 import Update from "../../components/update/Update"; // Import the Update component
 import axios from "axios";
 import './subCategories.scss'
+import { ToastContainer } from "react-toastify";
 
 
 const columns = [
@@ -143,6 +144,18 @@ export default function Subcategories() {
           setOpen={setOpenUpdate}
         />
       )}
+            <ToastContainer
+        position="bottom-center"
+        autoClose={1200}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

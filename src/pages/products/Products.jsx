@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import Add from '../../components/Add/Add';
+import { useState, useEffect } from "react";
+import Add from "../../components/Add/Add";
 import axios from "axios";
+import DataTable from "../../components/dataTable/DataTable";
 import Update from "../../components/update/Update";
-import DataTable from '../../components/dataTable/DataTable';
-import './Products.scss'
+import "./Products.scss";
+import { ToastContainer } from "react-toastify";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 150 },
@@ -63,7 +64,7 @@ const createUpdateProductsModal = [
   //     return <img src={params.row.img || "/noavatar.png"} alt="" />;
   //   },
   // },
-  { field: "sku", headerName: "SKU", width: 90, type: "number", },
+  { field: "sku", headerName: "SKU", width: 90, type: "number" },
 
   {
     field: "product_name",
@@ -164,7 +165,9 @@ export default function Products() {
     <div className="products">
       <div className="info">
         <h1>Products</h1>
-        <button className="addButton" onClick={() => setOpenAdd(true)}>Add New Product</button>
+        <button className="addButton" onClick={() => setOpenAdd(true)}>
+          Add New Product
+        </button>
       </div>
       <DataTable
         //slug="Users"
@@ -175,7 +178,11 @@ export default function Products() {
         onUpdate={handleUpdate}
       />
       {openAdd && (
-        <Add slug="Product" modalConfig={createUpdateProductsModal} setOpen={setOpenAdd} />
+        <Add
+          slug="Product"
+          modalConfig={createUpdateProductsModal}
+          setOpen={setOpenAdd}
+        />
       )}
       {openUpdate && (
         <Update
@@ -186,6 +193,18 @@ export default function Products() {
           setOpen={setOpenUpdate}
         />
       )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1200}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

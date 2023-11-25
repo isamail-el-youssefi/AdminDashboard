@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/Add/Add";
-import { useEffect } from "react";
-import axios from "axios";
 import Update from "../../components/update/Update";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Users.scss';
 
 
@@ -127,8 +128,8 @@ const updateUsersModal = [
 ];
 
 export default function Users() {
-  const [openAdd, setOpenAdd] = useState(false); // State for Add modal
-  const [openUpdate, setOpenUpdate] = useState(false); // State for Update modal
+  const [openAdd, setOpenAdd] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -158,7 +159,7 @@ export default function Users() {
     };
 
     fetchData();
-  }, [openAdd, openUpdate]); // Include openAdd and openUpdate in the dependency array
+  }, [openAdd, openUpdate]);
 
   const handleDelete = async (id) => {
     try {
@@ -169,7 +170,19 @@ export default function Users() {
       if (response.status === 200) {
         const updatedUsers = users.filter((user) => user.id !== id);
         setUsers(updatedUsers);
+
         console.log(`User with ID ${id} has been deleted successfully!`);
+
+        toast.error('Deleted successfully' , {
+          position: "bottom-center",
+          autoClose: 1200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         console.error(`Failed to delete user with ID ${id}`);
       }
@@ -211,6 +224,18 @@ export default function Users() {
           setOpen={setOpenUpdate}
         />
       )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1200}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

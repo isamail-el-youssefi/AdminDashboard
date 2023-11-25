@@ -5,7 +5,8 @@ import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/Add/Add";
 import Update from "../../components/update/Update"; // Import the Update component
 import axios from "axios";
-import './Categories.scss'
+import "./Categories.scss";
+import { ToastContainer, toast } from "react-toastify";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 260 },
@@ -90,6 +91,17 @@ export default function Categories() {
         );
         setCategories(updatedCategories);
         console.log(`Category with ID ${id} has been deleted successfully!`);
+
+        toast.error('Unable to delete this category, subcategories are attached to it.' , {
+          position: "bottom-center",
+          autoClose: 1200,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         console.error(`Failed to delete category with ID ${id}`);
       }
@@ -135,6 +147,18 @@ export default function Categories() {
           setOpen={setOpenUpdate}
         />
       )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1200}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
